@@ -10,10 +10,12 @@ export class RestaurantsComponent implements OnInit {
 
   restaurants: Restaurant[]
 
-  constructor(private restaurantService: RestaurantsService) { }
+  constructor(private restaurantsService: RestaurantsService) { }
 
   ngOnInit() {
-    this.restaurants = this.restaurantService.restaurants();
+    this.restaurantsService.restaurants()//O Observable (retornado) fica aguardando e só é chamado de fato depois de darmos um Subscrible
+      .subscribe(restaurants => this.restaurants = restaurants);
+      
   }
 
 }
